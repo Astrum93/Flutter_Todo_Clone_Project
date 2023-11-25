@@ -1,15 +1,42 @@
+import 'package:fast_app_base/common/common.dart';
+import 'package:fast_app_base/common/widget/scaffold/bottom_dialog_scaffold.dart';
+import 'package:fast_app_base/common/widget/w_round_button.dart';
+import 'package:fast_app_base/common/widget/w_rounded_container.dart';
 import 'package:flutter/material.dart';
+import 'package:nav/dialog/dialog.dart';
 
-class WriteTodoDialog extends StatefulWidget {
-  const WriteTodoDialog({super.key});
+class WriteTodoDialog extends DialogWidget {
+  WriteTodoDialog({super.key});
 
   @override
-  State<WriteTodoDialog> createState() => _WriteTodoDialogState();
+  DialogState<WriteTodoDialog> createState() => _WriteTodoDialogState();
 }
 
-class _WriteTodoDialogState extends State<WriteTodoDialog> {
+class _WriteTodoDialogState extends DialogState<WriteTodoDialog> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return BottomDialogScaffold(
+      body: RoundedContainer(
+        color: context.backgroundColor,
+        child: Column(
+          children: [
+            Row(
+              children: [
+                '할일을 작성해주세요.'.text.size(18).bold.make(),
+            spacer,
+            IconButton(onPressed: () {}, icon: const Icon(Icons.calendar_month))
+              ],
+            ),
+            height20,
+            Row(
+              children: [
+                Expanded(child: TextField(),),
+                RoundButton(text: '추가', onTap: () {}),
+              ],
+            )
+          ],
+        ),
+      ),
+    );
   }
 }
