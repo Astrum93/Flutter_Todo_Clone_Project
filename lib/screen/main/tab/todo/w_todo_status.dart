@@ -1,8 +1,8 @@
 import 'package:fast_app_base/common/common.dart';
-import 'package:fast_app_base/data/memory/todo_status.dart';
 import 'package:fast_app_base/screen/main/tab/todo/w_fire.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../data/memory/todo_status.dart';
 import '../../../../data/memory/vo_todo.dart';
 
 class TodoStatusWidget extends StatelessWidget {
