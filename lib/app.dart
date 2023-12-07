@@ -1,10 +1,7 @@
 import 'package:fast_app_base/common/common.dart';
 import 'package:fast_app_base/common/theme/custom_theme_app.dart';
-import 'package:fast_app_base/data/memory/todo_cubit.dart';
-import 'package:fast_app_base/data/memory/todo_data_holder_getx.dart';
 import 'package:fast_app_base/screen/main/s_main.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/instance_manager.dart';
 
 import 'common/theme/custom_theme.dart';
@@ -26,43 +23,43 @@ class AppState extends State<App> with Nav, WidgetsBindingObserver {
   @override
   GlobalKey<NavigatorState> get navigatorKey => App.navigatorKey;
 
-  // final notifier = TodoDataNotifier();
+  final notifier = TodoDataNotifier();
 
   @override
   void initState() {
     super.initState();
-    Get.put(TodoDataHolderGetx());
+    Get.put(TodoDataHolder(
+      notifier: notifier,
+    ));
     WidgetsBinding.instance.addObserver(this);
   }
 
   @override
   void dispose() {
     WidgetsBinding.instance.removeObserver(this);
-    //notifier.dispose();
+    notifier.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return CustomThemeApp(
-      child: Builder(builder: (context) {
-        return //TodoDataHolder(
-            //notifier: notifier,
-            //child:
-            BlocProvider(
-          create: (BuildContext context) => TodoCubit(),
-          child: MaterialApp(
-            navigatorKey: App.navigatorKey,
-            localizationsDelegates: context.localizationDelegates,
-            supportedLocales: context.supportedLocales,
-            locale: context.locale,
-            title: 'Image Finder',
-            theme: context.themeType.themeData,
-            home: const MainScreen(),
-          ),
-        );
-        //);
-      }),
+      child: Builder(
+        builder: (context) {
+          return TodoDataHolder(
+            notifier: notifier,
+            child: MaterialApp(
+              navigatorKey: App.navigatorKey,
+              localizationsDelegates: context.localizationDelegates,
+              supportedLocales: context.supportedLocales,
+              locale: context.locale,
+              title: 'Image Finder',
+              theme: context.themeType.themeData,
+              home: const MainScreen(),
+            ),
+          );
+        },
+      ),
     );
   }
 

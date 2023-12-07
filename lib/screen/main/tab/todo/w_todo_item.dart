@@ -16,9 +16,7 @@ class TodoItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Dismissible(
       onDismissed: (direction) {
-        context.readTodoCubit.removeTodo(todo);
-        // todoData.removeTodo(todo);
-        //context.holder.removeTodo(todo);
+        context.holder.removeTodo(todo);
       },
       background: RoundedContainer(
         color: context.appColors.removeTodoBg,
@@ -60,9 +58,7 @@ class TodoItem extends StatelessWidget {
                 Expanded(child: todo.title.text.size(20).medium.make()),
                 IconButton(
                     onPressed: () async {
-                      context.readTodoCubit.editTodo(todo);
-                      // todoData.editTodo(todo);
-                      // context.holder.editTodo(todo);
+                      context.holder.editTodo(todo);
                     },
                     icon: const Icon(EvaIcons.editOutline))
               ],
