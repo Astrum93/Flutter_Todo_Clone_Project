@@ -5,4 +5,4 @@
 	symlinks = false
 	ignorecase = true
 [remote "origin"]
-	url = https://github.com/Astrum93/fast_app_base.git
+	url = https://github.com/Astrum93/Flutter_Todo_Clone_Project.git
